@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: producer-application
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: kafka-consumer.schema-registry.demo
+      #key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.json.KafkaJsonSchemaDeserializer
+      #value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      max-poll-recrds: 500
+
+server:
+  port: 8086
+
+kafka:
+  poc-events:
+    topic-name:
+      poc.events.in
