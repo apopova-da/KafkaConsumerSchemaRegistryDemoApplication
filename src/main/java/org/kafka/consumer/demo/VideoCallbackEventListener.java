@@ -1,7 +1,7 @@
 package org.kafka.consumer.demo;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.kafka.consumer.demo.dto.VideoCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -17,7 +17,7 @@ public class VideoCallbackEventListener {
         topics = "${kafka.poc-events.topic-name}",
         containerFactory = "kafkaListenerContainerFactory"
     )
-    public void onEvent(ConsumerRecord<String, VideoCallback> record, Acknowledgment acknowledgment) {
+    public void onEvent(ConsumerRecord<String, JsonNode> record, Acknowledgment acknowledgment) {
         logger.info(String.format("Received a new message: key=[%s], value=[%s]", record.key(), record.value()));
         acknowledgment.acknowledge();
     }
